@@ -41,7 +41,7 @@ export function AppRoutes() {
           backgroundColor: tokens.colors.gray600,
           borderTopWidth: 0,
           height: Platform.OS === "android" ? "auto" : 96,
-          paddingBottom: tokens.space["10"],
+          paddingBottom: tokens.space["16"],
           paddingTop: tokens.space["6"],
         },
         tabBarLabelPosition: "beside-icon",
