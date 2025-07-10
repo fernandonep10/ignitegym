@@ -1,5 +1,5 @@
 import { api } from "@services/api";
-import { UserDTO } from "@dtos/userDTO";
+import { UserDTO } from "@dtos/UserDTO";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 import {
