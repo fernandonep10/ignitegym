@@ -8,19 +8,11 @@ import { Toast } from "@gluestack-ui/themed";
 import { ToastMessage } from "@components/ToastMessage";
 import { api } from "@services/api";
 import { useFocusEffect } from "@react-navigation/native";
+import { HistoryByDayDTO } from "@dtos/HistoryByDayDTO";
 
 export function History() {
   const [isLoading, setIsLoading] = useState(true);
-  const [exercises, setExercises] = useState([
-    {
-      title: "22.06.2024",
-      data: ["Puxada frontal", "Remada unilateral"],
-    },
-    {
-      title: "23.06.2024",
-      data: ["Puxada Frontal"],
-    },
-  ]);
+  const [exercises, setExercises] = useState<HistoryByDayDTO[]>([]);
 
   const toast = useToast();
 
@@ -28,6 +20,7 @@ export function History() {
     try {
       setIsLoading(true);
       const response = await api.get("/history");
+      setExercises(response.data);
 
       console.log(response.data);
     } catch (error) {
@@ -63,8 +56,8 @@ export function History() {
       <ScreenHeader title="Histórico de Exercícios" />
       <SectionList
         sections={exercises}
-        keyExtractor={(item) => item}
-        renderItem={() => <HistoryCard />}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => <HistoryCard data={item} />}
         renderSectionHeader={({ section }) => (
           <Heading
             fontFamily="$heading"
